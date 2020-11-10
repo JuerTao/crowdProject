@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring.xml","classpath:spring-tx.xml"})
+@ContextConfiguration(locations = {"classpath:spring.xml","classpath:spring-tx.xml","classpath:spring-mybatis.xml"})
 public class ConnectionTest {
 
     @Autowired
