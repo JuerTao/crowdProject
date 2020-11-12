@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>Title</title>
@@ -11,11 +11,12 @@
                 var data = [1, 2, 3, 4, 5, 6];
                 var requestData = JSON.stringify(data);
                 $.ajax({
-                    "url": "ajaxTest/get.json",
+                    /*"url": "ajaxTest/get.json",*/
+                    "url": "getAdminAll.json",
                     "data": requestData,
                     "type": "post",
                     "dataType": "text",
-                    "contentType": "application/json;charset=UTF-8",
+                   /* "contentType": "application/json;charset=UTF-8",*/
                     "success": function (response) {
                         alert(response);
                     },
@@ -26,11 +27,34 @@
             });
 
         });
+
+        $(function () {
+            $("#btn2").click(function () {
+                var data = [1, 2, 3, 4, 5, 6];
+                var requestData = JSON.stringify(data);
+                $.ajax({
+                    "url": "getAdminAll.json",
+                    "data": requestData,
+                    "type": "post",
+                    "dataType": "json",
+                    "contentType": "application/json;charset=UTF-8",
+                    "success": function (response) {
+                    },
+                    "error": function (response) {
+                    }
+                });
+            });
+        });
+
     </script>
 
 </head>
 <body>
 
 <button id="btn1">按钮</button>
+<br/>
+<br/>
+<br/>
+<button id="btn2">跳转出错页面</button>
 </body>
 </html>

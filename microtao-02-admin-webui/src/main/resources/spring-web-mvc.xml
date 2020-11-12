@@ -13,4 +13,14 @@
         <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+    <!--配置错误页面映射-->
+    <bean id="a" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">target/failed</prop>
+            </props>
+        </property>
+    </bean>
+    <!--配置view：controller，直接可以跳转到相应的页面-->
+    <mvc:view-controller path="admin/do/login/page.html" view-name="admin-login"/>
 </beans>

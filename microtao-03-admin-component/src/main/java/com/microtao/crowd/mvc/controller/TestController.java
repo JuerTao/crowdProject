@@ -1,5 +1,6 @@
 package com.microtao.crowd.mvc.controller;
 
+import com.microtao.crowd.util.ResultEntity;
 import com.microtao.crowd.entity.Admin;
 import com.microtao.crowd.service.api.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,17 @@ public class TestController {
     public String test(ModelMap model) {
         List<Admin> adminList = adminService.getAll();
         model.addAttribute("list", adminList);
+        int i = 1/0;
         return "target/success";
     }
 
     @ResponseBody
     @RequestMapping("/ajaxTest/get")
-    public String ajaxTest(@RequestBody List<Integer> list) {
-        System.out.println("1");
+    public ResultEntity<List<Integer>> ajaxTest(@RequestBody List<Integer> list) {
+        int i= 1/0;
         for (Integer num : list) {
             System.out.println(num);
         }
-        return "success";
+        return ResultEntity.successWithData(list);
     }
 }
