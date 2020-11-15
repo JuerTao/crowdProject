@@ -38,6 +38,9 @@
                    style="margin-top:10px;">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
+        <div align="center"><p  style="color: #AA0000">${requestScope.exception.message}</p></div>
+
+
         <button type="submit" class="btn btn-lg btn-success btn-block">登录</button>
     </form>
 </div>
