@@ -1,6 +1,7 @@
 package com.microtao.crowd.mvc.config;
 
 import com.google.gson.Gson;
+import com.microtao.crowd.exception.LoginFailedException;
 import com.microtao.crowd.util.CrowdUtil;
 import com.microtao.crowd.util.ResultEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,19 +22,20 @@ public class CrowdExceptionResolver {
 
 
     /**
-     * 数学类异常
+     * 空指针异常处理
      */
-    @ExceptionHandler(value = ArithmeticException.class)
-    public ModelAndView resolveMathException(
-            ArithmeticException exception,
+    @ExceptionHandler(value = LoginFailedException.class)
+    public ModelAndView LoginFailedException(
+            LoginFailedException exception,
             HttpServletRequest request,
             HttpServletResponse response
     ) throws IOException {
-
-        String viewName = "target/failed";
+        //登录失败依然跳转到登录界面
+        String viewName = "admin-login";
 
         return commonResolve(viewName, exception, request, response);
     }
+
 
     /**
      * 空指针异常处理
@@ -56,7 +58,7 @@ public class CrowdExceptionResolver {
      * @param request   请求体
      * @param response  响应体
      */
-    private ModelAndView commonResolve(String viewName, ArithmeticException exception,
+    private ModelAndView commonResolve(String viewName, RuntimeException exception,
                                        HttpServletRequest request, HttpServletResponse response) throws IOException {
         //1、判断是哪一类请求
         boolean type = CrowdUtil.judgeRequestType(request);

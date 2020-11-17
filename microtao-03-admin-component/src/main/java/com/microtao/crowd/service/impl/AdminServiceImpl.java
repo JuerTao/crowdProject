@@ -1,5 +1,7 @@
 package com.microtao.crowd.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.microtao.crowd.constant.CrowdConstant;
 import com.microtao.crowd.entity.Admin;
 import com.microtao.crowd.entity.AdminExample;
@@ -52,5 +54,15 @@ public class AdminServiceImpl implements AdminService {
             throw new LoginFailedException(CrowdConstant.MESSAGE_LOGIN_FAILED);
         }
         return admin;
+    }
+
+    @Override
+    public PageInfo<Admin> getPageInfo(String keyword, int pageNum, int pageSize) {
+        //调用PageHelper的静态方法，开启分页功能
+        PageHelper.startPage(pageNum,pageSize);
+        //执行查询
+        List<Admin> list = adminMapper.selectAdminByKeyword(keyword);
+        return new PageInfo<>(list);
+
     }
 }

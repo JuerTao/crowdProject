@@ -1,8 +1,8 @@
 package com.microtao.crowd.mvc.controller;
 
-import com.microtao.crowd.util.ResultEntity;
 import com.microtao.crowd.entity.Admin;
 import com.microtao.crowd.service.api.AdminService;
+import com.microtao.crowd.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +21,6 @@ public class TestController {
     public String test(ModelMap model) {
         List<Admin> adminList = adminService.getAll();
         model.addAttribute("list", adminList);
-        int i = 1/0;
         return "target/success";
     }
 

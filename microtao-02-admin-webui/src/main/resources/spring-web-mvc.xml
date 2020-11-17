@@ -23,4 +23,20 @@
     </bean>
     <!--配置view：controller，直接可以跳转到相应的页面-->
     <mvc:view-controller path="admin/do/login/page.html" view-name="admin-login"/>
+    <mvc:view-controller path="/admin/do/main/page.html" view-name="admin-main"/>
+
+    <!--注册拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--
+                /*：代表只拦截一层  如 /a
+                /**：代表对完整的路劲进行拦截-->
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/admin/do/login.html" />
+            <mvc:exclude-mapping path="/admin/do/login/page.html" />
+           <!-- <mvc:exclude-mapping path="/admin/do/logout.html" />-->
+            <mvc:exclude-mapping path="/admin/do/main/page.html" />
+            <bean id="loginInteceptor" class="com.microtao.crowd.mvc.inteceptor.LoginInteceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
