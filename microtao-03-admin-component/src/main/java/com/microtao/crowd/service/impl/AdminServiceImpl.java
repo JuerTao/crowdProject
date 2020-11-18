@@ -56,6 +56,9 @@ public class AdminServiceImpl implements AdminService {
         return admin;
     }
 
+    /**
+     * 分页查询
+     * */
     @Override
     public PageInfo<Admin> getPageInfo(String keyword, int pageNum, int pageSize) {
         //调用PageHelper的静态方法，开启分页功能
@@ -64,5 +67,13 @@ public class AdminServiceImpl implements AdminService {
         List<Admin> list = adminMapper.selectAdminByKeyword(keyword);
         return new PageInfo<>(list);
 
+    }
+    /**
+     * 单个删除
+     * */
+    @Override
+    public void remove(Integer adminId) {
+        adminMapper.deleteByPrimaryKey(adminId);
+        return;
     }
 }

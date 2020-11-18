@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <%@ include file="/WEB-INF/include-head.jsp" %>
+<%--引入分页css与js--%>
 <link rel="stylesheet" href="css/pagination.css"/>
 <script type="text/javascript" src="jquery/jquery.pagination.js"></script>
 <script type="text/javascript">
@@ -35,7 +36,7 @@
     function pageSelectCallback(pageIndex, jQuery) {
         //pageIndex是当前页页码的索引，相对于pageNum来说，pageIndex比pageNum小1
         var pageNum = pageIndex + 1;//执行页面跳转也就是实现“翻页”
-        window.location.href = "admin/get/page.html?pageNum=" + pageNum;
+        window.location.href = "admin/get/page.html?pageNum=" + pageNum+"&keyword=${param.keyword}";
         //取消当前超链接的默认行为
         return false;
     }
@@ -51,14 +52,14 @@
                     <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
                 </div>
                 <div class="panel-body">
-                    <form class="form-inline" role="form" style="float:left;">
+                    <form action="admin/get/page.html" method="post" class="form-inline" role="form" style="float:left;">
                         <div class="form-group has-feedback">
                             <div class="input-group">
                                 <div class="input-group-addon">查询条件</div>
-                                <input class="form-control has-success" type="text" placeholder="请输入查询条件">
+                                <input name="keyword" class="form-control has-success" type="text" placeholder="请输入查询条件">
                             </div>
                         </div>
-                        <button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询
+                        <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询
                         </button>
                     </form>
                     <button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i
@@ -100,8 +101,9 @@
                                                     class=" glyphicon glyphicon-check"></i></button>
                                             <button type="button" class="btn btn-primary btn-xs"><i
                                                     class=" glyphicon glyphicon-pencil"></i></button>
-                                            <button type="button" class="btn btn-danger btn-xs"><i
-                                                    class=" glyphicon glyphicon-remove"></i></button>
+                                            <%--执行删除操作带上页码与关键字更合理--%>
+                                            <a href="admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${param.keyword}.html" class="btn btn-danger">
+                                                <i class="glyphicon glyphicon-remove"></i></a>
                                         </td>
                                     </tr>
                                 </c:forEach>

@@ -17,4 +17,6 @@ public interface AdminService {
      * 通过关键字查询分页数据
      * */
     PageInfo<Admin> getPageInfo(String keyword,int pageCount,int pageSize);
+
+    void remove(Integer adminId);
 }
