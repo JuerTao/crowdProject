@@ -56,5 +56,10 @@ public class ConnectionTest {
         adminMapper.insert(new Admin(null, "admin"+i, "admin"+i, "小明"+i, "wqw@qq.com", new SimpleDateFormat("yyyy-MM-dd").format(new Date())));
         }
     }
+    @Test
+    public void selectAdminByAdminId() {
+        Admin admin = adminService.selectAdminByAdminId(1);
+        System.out.println(admin.toString());
+    }
 }
 

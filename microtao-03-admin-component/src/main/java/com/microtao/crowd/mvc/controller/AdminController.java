@@ -7,6 +7,7 @@ import com.microtao.crowd.service.api.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +33,24 @@ public class AdminController {
         session.setAttribute(CrowdConstant.LOGIN_ADMIN, admin.getUserName());
         return "redirect:/admin/do/main/page.html";
     }
+
+    /**
+     * 新增用户
+     * */
+    @RequestMapping("admin/save.html")
+    public String save(Admin admin,HttpSession session) {
+        if(StringUtils.isEmpty(admin.getLoginAcct())){
+            throw new RuntimeException(CrowdConstant.LOGIN_ACCT_NOU_NULL);
+        }
+        if(StringUtils.isEmpty(admin.getUserName())){
+            throw new RuntimeException(CrowdConstant.LOGIN_USERNAME_NOU_NULL);
+        }
+        if(StringUtils.isEmpty(admin.getUserPswd())){
+            throw new RuntimeException(CrowdConstant.LOGIN_PASSWORD_NOU_NULL);
+        }
+        adminService.saveAdmin(admin);
+        return "redirect:/admin/get/page.html";
+    }
     /**
      * 退出登录
      * */
@@ -55,8 +74,18 @@ public class AdminController {
     @RequestMapping("admin/remove/{adminId}/{pageNum}/{keyword}.html")
     public String remove(@PathVariable(value = "adminId") Integer adminId,
                          @PathVariable(value = "pageNum") String pageNum,
-                         @PathVariable(value = "keyword") String keyword){
+                         @PathVariable(value = "keyword") String keyword, HttpSession session){
 
+        // 尝试从session对象中获取用户的信息
+        String admin = (String) session.getAttribute(CrowdConstant.LOGIN_ADMIN);
+        //通过adminId查询当前用户
+        Admin adminDB = adminService.selectAdminByAdminId(adminId);
+        if(null!=adminDB){
+            String username = adminDB.getUserName();
+            if(adminDB.equals(username)){
+                throw new RuntimeException(CrowdConstant.DELETE_FAILED);
+            }
+        }
         adminService.remove(adminId);
         return "redirect:/admin/get/page.html?pageNum="+pageNum+"&keyword="+keyword;
     }

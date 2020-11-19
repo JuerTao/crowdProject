@@ -1,6 +1,7 @@
 package com.microtao.crowd.mvc.config;
 
 import com.google.gson.Gson;
+import com.microtao.crowd.exception.LoginAcctAlreadyInUseException;
 import com.microtao.crowd.exception.LoginFailedException;
 import com.microtao.crowd.util.CrowdUtil;
 import com.microtao.crowd.util.ResultEntity;
@@ -32,6 +33,20 @@ public class CrowdExceptionResolver {
     ) throws IOException {
         //登录失败依然跳转到登录界面
         String viewName = "admin-login";
+
+        return commonResolve(viewName, exception, request, response);
+    }
+    /**
+     * 空指针异常处理
+     */
+    @ExceptionHandler(value = LoginAcctAlreadyInUseException.class)
+    public ModelAndView resolveLoginAcctAlreadyInUseException(
+            LoginAcctAlreadyInUseException exception,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+        //添加失败依然去添加页面
+        String viewName = "admin-add";
 
         return commonResolve(viewName, exception, request, response);
     }

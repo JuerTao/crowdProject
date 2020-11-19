@@ -19,4 +19,6 @@ public interface AdminService {
     PageInfo<Admin> getPageInfo(String keyword,int pageCount,int pageSize);
 
     void remove(Integer adminId);
+    /** 通过id查询当前登录的用户*/
+    Admin selectAdminByAdminId(Integer adminId);
 }

@@ -15,5 +15,9 @@ public class CrowdConstant {
     public static final String ATTR_NAME_LOGIN_ADMIN = "loginAdmin";
     public static final String ATTR_NAME_PAGE_INFO = "pageInfo";
     public static final String LOGIN_ADMIN = "LoginAdmin";
+    public static final String LOGIN_ACCT_NOU_NULL = "账号不能为空";
+    public static final String LOGIN_USERNAME_NOU_NULL = "昵称不能为空";
+    public static final String LOGIN_PASSWORD_NOU_NULL = "密码不能为空";
 
+    public static final String DELETE_FAILED = "不能删除自己！";
 }

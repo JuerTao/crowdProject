@@ -94,7 +94,15 @@
         login_acct like concat("%",#{keyword},"%") or
         user_name like concat("%",#{keyword},"%") or
         email like concat("%",#{keyword},"%")
+        order by id desc
+    </select>
 
+    <select id="selectAdminByAdminId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_admin
+        where
+        id = #{adminId}
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select

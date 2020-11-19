@@ -30,4 +30,6 @@ public interface AdminMapper {
     int updateByPrimaryKey(Admin record);
     /**通过关键字查询分页数据*/
     List<Admin> selectAdminByKeyword(String keyword);
+    /**通过用户id查询当前登录的信息*/
+    Admin selectAdminByAdminId(Integer adminId);
 }
