@@ -36,7 +36,7 @@
     function pageSelectCallback(pageIndex, jQuery) {
         //pageIndex是当前页页码的索引，相对于pageNum来说，pageIndex比pageNum小1
         var pageNum = pageIndex + 1;//执行页面跳转也就是实现“翻页”
-        window.location.href = "admin/get/page.html?pageNum=" + pageNum+"&keyword=${param.keyword}";
+        window.location.href = "admin/get/page.html?pageNum=" + pageNum + "&keyword=${param.keyword}";
         //取消当前超链接的默认行为
         return false;
     }
@@ -52,11 +52,13 @@
                     <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
                 </div>
                 <div class="panel-body">
-                    <form action="admin/get/page.html" method="post" class="form-inline" role="form" style="float:left;">
+                    <form action="admin/get/page.html" method="post" class="form-inline" role="form"
+                          style="float:left;">
                         <div class="form-group has-feedback">
                             <div class="input-group">
                                 <div class="input-group-addon">查询条件</div>
-                                <input name="keyword" class="form-control has-success" type="text" placeholder="请输入查询条件">
+                                <input name="keyword" class="form-control has-success" type="text"
+                                       placeholder="请输入查询条件">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询
@@ -65,10 +67,11 @@
                     <button type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i
                             class=" glyphicon glyphicon-remove"></i> 删除
                     </button>
-                   <%-- <button type="button" class="btn btn-primary" style="float:right;"
-                            onclick="window.location.href='add.html'"><i class="glyphicon glyphicon-plus"></i> 新增
-                    </button>--%>
-                    <a href="admin/do/add/page.html" type="submit" class="btn btn-primary" style="float:right;"><i class="glyphicon glyphicon-plus"></i> 新增</a>
+                    <%-- <button type="button" class="btn btn-primary" style="float:right;"
+                             onclick="window.location.href='add.html'"><i class="glyphicon glyphicon-plus"></i> 新增
+                     </button>--%>
+                    <a href="admin/do/add/page.html" type="submit" class="btn btn-primary" style="float:right;"><i
+                            class="glyphicon glyphicon-plus"></i> 新增</a>
                     <br>
                     <hr style="clear:both;">
                     <div class="table-responsive">
@@ -100,10 +103,15 @@
                                         <td>
                                             <button type="button" class="btn btn-success btn-xs"><i
                                                     class=" glyphicon glyphicon-check"></i></button>
-                                            <button type="button" class="btn btn-primary btn-xs"><i
-                                                    class=" glyphicon glyphicon-pencil"></i></button>
-                                            <%--执行删除操作带上页码与关键字更合理--%>
-                                            <a href="admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${param.keyword}.html" class="btn btn-danger">
+                                           <%-- <button type="button" class="btn btn-primary btn-xs"><i
+                                                    class=" glyphicon glyphicon-pencil"></i></button>--%>
+                                            <a href="admin/to/edit/page.html?adminId=${admin.id }&pageNum=${requestScope.pageInfo.pageNum }&keyword=${param.keyword }"
+                                               class="btn btn-primary btn-xs">
+                                                <i class=" glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                                <%--执行删除操作带上页码与关键字更合理--%>
+                                            <a href="admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${param.keyword}.html"
+                                               class="btn btn-danger">
                                                 <i class="glyphicon glyphicon-remove"></i></a>
                                         </td>
                                     </tr>

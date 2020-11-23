@@ -89,4 +89,13 @@ public class AdminController {
         adminService.remove(adminId);
         return "redirect:/admin/get/page.html?pageNum="+pageNum+"&keyword="+keyword;
     }
+
+    @RequestMapping("admin/to/edit/page.html")
+    public String editPage(@RequestParam("adminId") Integer adminId,ModelMap modelMap){
+
+        Admin admin = adminService.getAdminById(adminId);
+        modelMap.addAttribute("admin",admin);
+
+        return "admin-edit";
+    }
 }

@@ -101,4 +101,8 @@ public class AdminServiceImpl implements AdminService {
         }
         return new Admin();
     }
+
+    public Admin getAdminById(Integer adminId) {
+        return adminMapper.selectAdminByAdminId(adminId);
+    }
 }

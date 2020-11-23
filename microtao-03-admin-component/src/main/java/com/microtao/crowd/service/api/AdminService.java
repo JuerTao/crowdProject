@@ -21,4 +21,7 @@ public interface AdminService {
     void remove(Integer adminId);
     /** 通过id查询当前登录的用户*/
     Admin selectAdminByAdminId(Integer adminId);
+
+    /** 通过用户id获取用户对象*/
+    Admin getAdminById(Integer adminId);
 }
