@@ -2,6 +2,7 @@ package com.microtao.crowd.mvc.config;
 
 import com.google.gson.Gson;
 import com.microtao.crowd.exception.LoginAcctAlreadyInUseException;
+import com.microtao.crowd.exception.LoginAcctForUpdateAlreadyInUseException;
 import com.microtao.crowd.exception.LoginFailedException;
 import com.microtao.crowd.util.CrowdUtil;
 import com.microtao.crowd.util.ResultEntity;
@@ -22,6 +23,19 @@ import java.io.IOException;
 public class CrowdExceptionResolver {
 
 
+    /**
+     * 处理更新信息导致的唯一键约束异常
+     */
+    @ExceptionHandler(value = LoginAcctForUpdateAlreadyInUseException.class)
+    public ModelAndView resolveLoginAcctForUpdateAlreadyInUseException(
+            LoginAcctForUpdateAlreadyInUseException exception,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+        String viewName = "target/failed";
+
+        return commonResolve(viewName, exception, request, response);
+    }
     /**
      * 空指针异常处理
      */

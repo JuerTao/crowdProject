@@ -25,6 +25,7 @@
     <mvc:view-controller path="admin/do/login/page.html" view-name="admin-login"/>
     <mvc:view-controller path="/admin/do/main/page.html" view-name="admin-main"/>
     <mvc:view-controller path="/admin/do/add/page.html" view-name="admin-add"/>
+    <mvc:view-controller path="/role/to/page.html" view-name="role-page"/>
 
     <!--注册拦截器-->
     <mvc:interceptors>

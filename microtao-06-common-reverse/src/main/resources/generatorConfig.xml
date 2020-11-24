@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration><!--mybatis-generator:generate-->
+    <!--
+        使用自动生成工具的命令：mybatis-generator:generate
+
+    -->
     <context id="MicrotaoTables" targetRuntime="MyBatis3">
         <commentGenerator><!--是否去除自动生成的注释true:是;false:否-->
             <property name="suppressAllComments" value="true"/>
@@ -35,6 +39,6 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!--数据库表名字和我们的entity类对应的映射指定-->
-        <table tableName="t_admin" domainObjectName="Admin"/>
+        <table tableName="t_role" domainObjectName="Role"/>
     </context>
 </generatorConfiguration>

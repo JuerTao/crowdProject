@@ -6,6 +6,7 @@ import com.microtao.crowd.constant.CrowdConstant;
 import com.microtao.crowd.entity.Admin;
 import com.microtao.crowd.entity.AdminExample;
 import com.microtao.crowd.exception.LoginAcctAlreadyInUseException;
+import com.microtao.crowd.exception.LoginAcctForUpdateAlreadyInUseException;
 import com.microtao.crowd.exception.LoginFailedException;
 import com.microtao.crowd.mapper.AdminMapper;
 import com.microtao.crowd.service.api.AdminService;
@@ -104,5 +105,16 @@ public class AdminServiceImpl implements AdminService {
 
     public Admin getAdminById(Integer adminId) {
         return adminMapper.selectAdminByAdminId(adminId);
+    }
+
+    public void update(Admin admin) {
+
+        try {
+            adminMapper.updateByPrimaryKeySelective(admin);
+        } catch (Exception e) {
+            if(e instanceof DuplicateKeyException){
+                throw new LoginAcctForUpdateAlreadyInUseException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+            }
+        }
     }
 }

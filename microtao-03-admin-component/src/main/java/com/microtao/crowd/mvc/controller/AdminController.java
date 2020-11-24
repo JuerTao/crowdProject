@@ -65,7 +65,7 @@ public class AdminController {
     @RequestMapping("admin/get/page.html")
     public String getPageInfo(@RequestParam(value = "keyword",defaultValue = "") String keyword,
                               @RequestParam(value = "pageNum",defaultValue = "1") int pageNum,
-                              @RequestParam(value = "pageSize",defaultValue = "20") int pageSize, ModelMap modelMap){
+                              @RequestParam(value = "pageSize",defaultValue = "10") int pageSize, ModelMap modelMap){
         PageInfo<Admin> pageInfo = adminService.getPageInfo(keyword, pageNum, pageSize);
         modelMap.addAttribute(CrowdConstant.ATTR_NAME_PAGE_INFO,pageInfo);
         return "admin-page";
@@ -86,6 +86,7 @@ public class AdminController {
                 throw new RuntimeException(CrowdConstant.DELETE_FAILED);
             }
         }
+
         adminService.remove(adminId);
         return "redirect:/admin/get/page.html?pageNum="+pageNum+"&keyword="+keyword;
     }
@@ -97,5 +98,11 @@ public class AdminController {
         modelMap.addAttribute("admin",admin);
 
         return "admin-edit";
+    }
+
+    @RequestMapping("admin/update.html")
+    public String update(Admin admin,@RequestParam("pageNum") String pageNum,@RequestParam("keyword") String keyword){
+        adminService.update(admin);
+        return "redirect:/admin/get/page.html?pageNum="+pageNum+"&keyword="+keyword;
     }
 }

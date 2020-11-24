@@ -23,7 +23,7 @@ public class ResultEntity<T> {
     }
 
     /**
-     * 处理成功，但不反悔数据
+     * 处理成功，但不返回数据
      */
     public static <E> ResultEntity<E> successWithoutData(E data) {
         return new ResultEntity<E>(SUCCESS, null, data);

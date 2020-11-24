@@ -24,4 +24,7 @@ public interface AdminService {
 
     /** 通过用户id获取用户对象*/
     Admin getAdminById(Integer adminId);
+
+    /** 更新用户信息*/
+    void update(Admin admin);
 }
